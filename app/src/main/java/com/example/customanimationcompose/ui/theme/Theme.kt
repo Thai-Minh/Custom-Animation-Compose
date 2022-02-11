@@ -1,18 +1,15 @@
 package com.example.customanimationcompose.ui.theme
 
-import androidx.compose.foundation.isSystemInDarkTheme
-import androidx.compose.material.MaterialTheme
 import androidx.compose.material.darkColors
 import androidx.compose.material.lightColors
-import androidx.compose.runtime.*
 
-private val DarkColorPalette = darkColors(
+val DarkColorPalette = darkColors(
     primary = Purple200,
     primaryVariant = Purple700,
     secondary = Teal200
 )
 
-private val LightColorPalette = lightColors(
+val LightColorPalette = lightColors(
     primary = Purple500,
     primaryVariant = Purple700,
     secondary = Teal200
@@ -26,48 +23,3 @@ private val LightColorPalette = lightColors(
     onSurface = Color.Black,
     */
 )
-
-@Stable
-data class AppColors(val customViewColors: CustomViewColors)
-
-private val LightTheme = AppColors(CustomColors)
-private val DarkTheme = AppColors(CustomColors)
-
-private val LocalAppColors = compositionLocalOf {
-    LightTheme
-}
-
-object AppTheme {
-    val colors: AppColors
-        @Composable
-        @ReadOnlyComposable
-        get() = LocalAppColors.current
-}
-
-@Composable
-fun CustomAnimationComposeTheme(
-    darkTheme: Boolean = isSystemInDarkTheme(),
-    content: @Composable () -> Unit
-) {
-    val colors = if (darkTheme) {
-        DarkColorPalette
-    } else {
-        LightColorPalette
-    }
-
-    val appColors = if (darkTheme)
-        DarkTheme
-    else
-        LightTheme
-
-    CompositionLocalProvider(
-        LocalAppColors provides appColors
-    ) {
-        MaterialTheme(
-            colors = colors,
-            typography = Typography,
-            shapes = Shapes,
-            content = content
-        )
-    }
-}
