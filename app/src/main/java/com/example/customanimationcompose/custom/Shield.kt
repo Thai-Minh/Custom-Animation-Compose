@@ -59,7 +59,7 @@ fun Shield(
             animation = tween(repeatDuration, easing = LinearOutSlowInEasing),
             repeatMode = RepeatMode.Restart
         )
-    )
+     )
 
     if (animValue >= 0.98f && progress >= 1f) {
         onFinished()
@@ -237,7 +237,9 @@ fun ShieldPreview() {
 //                .size(width = 120.dp, height = 160.dp),
             repeatDuration = 1500,
             progress = progress.value,
-        )
+        ) {
+            Log.d("MTHAI", "ShieldPreview: onFinished")
+        }
     }
 }
 
