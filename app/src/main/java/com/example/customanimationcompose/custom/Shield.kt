@@ -162,8 +162,6 @@ private fun DrawScope.drawWaveRotate(value: Float, rect: Rect, scanColor: Int) {
 
     val sweepAngle = degree - startAngle
 
-    Log.d("MTHAI", "drawWaveRotate: startAngle: degree: $degree --- startAngle: $startAngle --- sweepAngle: $sweepAngle --- ${(degree - 180) / (360 - 180) * (360 - 72) + 72}")
-
     startAngle -= 90
 
     drawArc(
@@ -209,7 +207,8 @@ private fun convertValue(
     min2: Float,
     max2: Float
 ): Float {
-    return ((currValue - min1) / (max1 - min1)) * (max2 - min2) + min2
+    val percentOfDistance = (currValue - min1) / (max1 - min1)
+    return percentOfDistance * (max2 - min2) + min2
 }
 
 @Preview
