@@ -61,8 +61,13 @@ fun Shield(
         )
      )
 
-    if (animValue >= 0.98f && progress >= 1f) {
+    val isFinished = remember {
+        mutableStateOf(false)
+    }
+
+    if (animValue >= 0.98f && progress >= 1f && !isFinished.value) {
         onFinished()
+        isFinished.value = true
     }
 
     val textPercent = remember(key1 = progress) {
